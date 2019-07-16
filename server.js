@@ -1,19 +1,52 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
-// var db = require('./models');
+const session = require('express-session');
+const passport = require('passport');
+const flash = require('connect-flash');
+
+// USE INDEX.HTML
+const db = require('./models');
 
 const app = express();
+
+// PASSPORT CONFIG
+require('./config/passport')(passport);
+
+const PORT = process.env.PORT || 8080;
 
 // EJS
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
-//ROUTES
+// BODYPARSER
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+
+// FOR PASSPORT USING EXPRESS SESSION
+app.use(session({ secret: 'secret', resave: true, saveUninitialized: true })); // session secret
+// PASSPORT MIDDLEWARE
+app.use(passport.initialize());
+app.use(passport.session());
+
+// CONNECT FLASH
+app.use(flash());
+
+// GLOBAL VARS
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    next();
+});
+// ROUTES
 app.use('/', require('./routes/router'));
 app.use('/users', require('./routes/users'));
 
-const PORT = process.env.PORT || 8080;
 
-// db.sequelize.sync().then(function () {
+
+db.sequelize.sync().then(function () {
     app.listen(PORT, console.log(`Server started on port ${PORT}`));
-// });
+}).catch(function (err) {
+    console.log(err, "Something went wrong updating the Database");
+});
