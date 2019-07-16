@@ -6,7 +6,7 @@ const passport = require('passport');
 
 
 // USER MODEL
-const db = require('../models')
+const db = require('../models');
 
 // LOGIN PAGE
 router.get('/login', (req, res) => res.render('login'));
@@ -79,15 +79,20 @@ router.post('/register', (req, res) => {
 });
 
 // LOGIN HANDLE
-router.post('/login', passport.authenticate('local', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/users/asd',
-    failureFlash: true
-}) ,(req, res, next) => {
-   (req, res, next);
-   res.redirect('/dashboard/' + req.user.email);
-   console.log("redirected + user: ", req.user.email);
+router.post('/login',(req, res, next) => {
+    passport.authenticate('local', function(err, user, info) {
+        if (err) { return next(err); }
+        if (!user) { return res.redirect('/login'); }
+        req.logIn(user, function(err) {
+          if (err) { return next(err); }
+          return res.redirect('/users/' + user.email);
+        });
+      })(req, res, next);   res.redirect('/');
+   console.log("redirected + user: ");
 });
+
+
+
 
 // LOGOUT HANDLE
 router.get('/logout', (req, res) => {
