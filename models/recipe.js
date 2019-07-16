@@ -19,3 +19,4 @@ Recipe.sync();
 
 // Makes the Recipe Model available for other files (will also create a table)
 module.exports = Recipe;
+//
