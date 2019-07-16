@@ -13,5 +13,5 @@ module.exports = function(app) {
     });
 
     // GET route for returning recipes of a specific category
-    app.get("/api/posts/")
+    app.get("/api/posts/category/:category", function)
 }
