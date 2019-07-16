@@ -1,4 +1,4 @@
-
+// Dependencies
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const passport = require('passport');
@@ -23,9 +23,9 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
 // FOR PASSPORT USING EXPRESS SESSION
 app.use(session({ secret: 'secret', resave: true, saveUninitialized: true })); // session secret
+
 // PASSPORT MIDDLEWARE
 app.use(passport.initialize());
 app.use(passport.session());
@@ -41,6 +41,7 @@ app.use((err, req, res, next) => {
     console.log(err);
     next();
 });
+
 // ROUTES
 app.use('/', require('./routes/router.js'));
 app.use('/users', require('./routes/users.js'));
