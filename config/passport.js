@@ -22,8 +22,10 @@ module.exports = function (passport) {
                     if (err) throw err;
 
                     if (isMatch) {
+                        console.log("Correct Password");
                         return done(null, user);
                     } else {
+                        console.log("Incorrect Password");
                         return done(null, false, { message: "Incorrect Password" });
                     }
                 });
@@ -32,12 +34,16 @@ module.exports = function (passport) {
     );
 
     passport.serializeUser(function (member, done) {
+        console.log("Serialize user member: ", member);
         done(null, member.id);
     });
 
     passport.deserializeUser(function (id, done) {
-        db.Member.findById(id, function (err, user) {
+        console.log("Deserialize id: ", id);
+        db.Member.findByPk(id, function (err, user) {
+            if(err) throw err;
             done(err, user);
         });
+
     });
 }

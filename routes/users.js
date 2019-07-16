@@ -79,19 +79,20 @@ router.post('/register', (req, res) => {
 });
 
 // LOGIN HANDLE
-
-router.post('/login', (req, res, next) => {
-    passport.authenticate('local', {
-        successRedirect: '/dashboard',
-        failureRedirect: '/users/asd',
-        failureFlash: true
-    })(req, res, next);
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/users/asd',
+    failureFlash: true
+}) ,(req, res, next) => {
+   (req, res, next);
+   res.redirect('/dashboard/' + req.user.email);
+   console.log("redirected + user: ", req.user.email);
 });
 
 // LOGOUT HANDLE
 router.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/users/login');
-})
+});
 
 module.exports = router;

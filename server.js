@@ -1,8 +1,8 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
-const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
+const session = require('express-session');
 
 // USE INDEX.HTML
 const db = require('./models');
@@ -33,15 +33,16 @@ app.use(passport.session());
 app.use(flash());
 
 // GLOBAL VARS
-app.use((req, res, next) => {
+app.use((err, req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
+    console.log(err);
     next();
 });
 // ROUTES
-app.use('/', require('./routes/router'));
-app.use('/users', require('./routes/users'));
+app.use('/', require('./routes/router.js'));
+app.use('/users', require('./routes/users.js'));
 
 
 
