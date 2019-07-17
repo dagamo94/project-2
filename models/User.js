@@ -45,8 +45,6 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.ENUM('active', 'inactive'),
             dafaultValue: 'active'
         }
-
     });
-
     return Member;
 }

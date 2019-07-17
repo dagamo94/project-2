@@ -58,9 +58,11 @@ app.use(express.static("public"));
 // var routes = require("./controllers/recipeController.js")
 // app.use(routes);
 
-// // Routes
-// require("./routes/api-routes.js")(app);
-// require("./routes/html-routes.js")(app);
+// Routes
+require("./routes/api-routes.js")(app);
+
+
+//require("./routes/html-routes.js")(app);
 
 db.sequelize.sync().then(function () {
     app.listen(PORT, console.log(`Server started on port ${PORT}`));

@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs');
 const flash = require('connect-flash');
 const passport = require('passport');
 
-
 // USER MODEL
 const db = require('../models');
 
@@ -91,9 +90,6 @@ router.post('/signup',(req, res, next) => {
     //   res.redirect('/');
    console.log("redirected + user: ");
 });
-
-
-
 
 // LOGOUT HANDLE
 router.get('/logout', (req, res) => {
