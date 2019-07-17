@@ -47,20 +47,20 @@ app.use('/', require('./routes/router.js'));
 app.use('/users', require('./routes/users.js'));
 
 //Sets Handlebars 
-var exphbs = require("express-handlebars");
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
+// var exphbs = require("express-handlebars");
+// app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+// app.set("view engine", "handlebars");
 
 // Statis directory   NEEDED????
 app.use(express.static("public"));
 
-// Import routes and give the sever access to them     NEEDED????
-var routes = require("./controllers/recipeController.js")
-app.use(routes);
+// // Import routes and give the sever access to them     NEEDED????
+// var routes = require("./controllers/recipeController.js")
+// app.use(routes);
 
-// Routes
-require("./routes/api-routes.js")(app);
-require("./routes/html-routes.js")(app);
+// // Routes
+// require("./routes/api-routes.js")(app);
+// require("./routes/html-routes.js")(app);
 
 db.sequelize.sync().then(function () {
     app.listen(PORT, console.log(`Server started on port ${PORT}`));

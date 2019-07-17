@@ -66,7 +66,7 @@ router.post('/register', (req, res) => {
                         email: email,
                         password: hashedPassword
                     }).then(function (member) {
-                        req.flash('success_msg', 'You are now  registered and can now log in');
+                        req.flash('success_msg', 'You are now  registered and can now log in'); // res?
                         console.log(member);
                         res.redirect('/users/login');
                     }).catch(err => console.log(err));              
@@ -79,15 +79,16 @@ router.post('/register', (req, res) => {
 });
 
 // LOGIN HANDLE
-router.post('/login',(req, res, next) => {
+router.post('/signup',(req, res, next) => {
     passport.authenticate('local', function(err, user, info) {
         if (err) { return next(err); }
-        if (!user) { return res.redirect('/login'); }
+        if (!user) { return res.json({user: null}); }
         req.logIn(user, function(err) {
           if (err) { return next(err); }
-          return res.redirect('/users/' + user.email);
+          return res.json(user);
         });
-      })(req, res, next);   res.redirect('/');
+      })(req, res, next);   
+    //   res.redirect('/');
    console.log("redirected + user: ");
 });
 
