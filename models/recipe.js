@@ -17,6 +17,11 @@ var Recipe = sequelize.define("recipe", {
 // Syncs with DB
 Recipe.sync();
 
-// Makes the Recipe Model available for other files (will also create a table)
+// Makes the Recipe Model available for other files (will also create a table)git 
 module.exports = Recipe;
 //
+
+// ** Unit Test
+// *! Do Not
+// *? dow we need to do thiws 
+// *TODO put in 
