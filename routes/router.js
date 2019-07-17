@@ -10,5 +10,4 @@ router.get('/dashboard', (req, res) => res.render('dashboard'));
 //     name: req.body.name
 // }));
 
-
 module.exports = router;

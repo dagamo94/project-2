@@ -46,10 +46,10 @@ app.use((err, req, res, next) => {
 app.use('/', require('./routes/router.js'));
 app.use('/users', require('./routes/users.js'));
 
-//Sets Handlebars 
-var exphbs = require("express-handlebars");
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
+// //Sets Handlebars 
+// var exphbs = require("express-handlebars");
+// app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+// app.set("view engine", "handlebars");
 
 // Statis directory   NEEDED????
 app.use(express.static("public"));
