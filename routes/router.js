@@ -10,5 +10,4 @@ router.get('/', (req, res) => res.render('index'));
 //     name: req.body.name
 // }));
 
-
 module.exports = router;
