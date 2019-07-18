@@ -22,6 +22,9 @@ app.set('view engine', 'ejs');
 // BODYPARSER
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+//Import routes and give the sever access to them     NEEDED????
+var routes = require("./controllers/recipeController.js")
+app.use(routes);
 
 // FOR PASSPORT USING EXPRESS SESSION
 app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true })); // session secret
