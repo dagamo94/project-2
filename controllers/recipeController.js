@@ -7,12 +7,7 @@ var db = require("../models");
 
 // ** Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
-    recipe.all(function(data) {
-        var hbsObject = {
-            recipes: data
-        }
-        res.render("index", hbsObject);
-    });
+        res.render("index");
 });
 
 router.post("/api/recipes", function(req, res) {
