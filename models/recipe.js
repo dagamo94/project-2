@@ -36,6 +36,6 @@ module.exports = function (sequelize, DataTypes) { // ** Makes the Recipe Model 
         //     dafaultValue: 'active'
         // }
     });
-
+    
     return Recipe;
 }
