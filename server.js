@@ -54,12 +54,13 @@ app.use('/users', require('./routes/users.js'));
 // Statis directory   NEEDED????
 app.use(express.static("public"));
 
+require("./routes/api-routes.js")(app);
 // Import routes and give the sever access to them     NEEDED????
 var routes = require("./controllers/recipeController.js")
 app.use(routes);
 
 // Routes
-require("./routes/api-routes.js")(app);
+// require("./routes/api-routes.js")(app);
 
 
 //require("./routes/html-routes.js")(app);
