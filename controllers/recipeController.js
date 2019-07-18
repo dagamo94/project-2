@@ -3,7 +3,7 @@ var express = require("express");
 var router = express.Router();
 
 // ** Import the model (recipe.js) to use it's database functions.
-var burger = require("../models/recipe.js");
+var db = require("../models");
 
 // ** Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
@@ -16,7 +16,7 @@ router.get("/", function(req, res) {
 });
 
 router.post("/api/recipes", function(req, res) {
-    recipe.create([
+    db.Recipe.create([
         "recipe_name", "ingredients"
     ], [
         req.body.recipe_name, req.body.ingredients
