@@ -7,23 +7,13 @@ var db = require("../models");
 
 // ** Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
-    recipe.all(function(data) {
-        var hbsObject = {
-            recipes: data
-        }
-        res.render("index", hbsObject);
-    });
+        res.render("index");
 });
 
 router.post("/api/recipes", function(req, res) {
-    db.Recipe.create([
-        "recipe_name", "ingredients"
-    ], [
-        req.body.recipe_name, req.body.ingredients
-    ], function(result) {
-        // ** Send back the ID of the new 
-        res.json({ id: result.insertID });
-    });
+    db.Recipe.create(req.body).then(function(data) {
+        res.json(data);
+    })
 });
 
 // ** To delete a recipe
