@@ -33,7 +33,32 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <!-- <script src="/js/script.js" type = "text/javascript"></script> -->
+
+    <!-- <script>
+        $(document).ready(function () {
+            console.log('LOGIN');
+
+            $("#loginbtn").on("click", function (event) {
+                // event.preventDefault();
+                var loginUser = {
+                    email: $("#email").val().trim(),
+                    password: $("#password").val().trim()
+                }
+                console.log("Login User info: loginUser");
+                $.ajax('/users/signup', {
+                    type: 'POST',
+                    data: loginUser
+                }).then(function () {
+                    console.log('User login');
+                    // location.href = '/';
+                    // window.location.assign("/")
+                    window.location.href='/register';
+
+                });
+
+            });
+        });
+    </script> -->
 </body>
 
 </html>

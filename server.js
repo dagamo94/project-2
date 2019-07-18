@@ -5,7 +5,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 
-// USE INDEX.HTML
+// USE INDEX.EJS
 const db = require('./models');
 const router = require('./controllers/recipeController');
 const app = express();
@@ -22,6 +22,9 @@ app.use(express.static("public"));
 // BODYPARSER
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+//Import routes and give the sever access to them     NEEDED????
+var routes = require("./controllers/recipeController.js")
+app.use(routes);
 
 
 
@@ -30,23 +33,23 @@ app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
 // FOR PASSPORT USING EXPRESS SESSION
-app.use(session({ secret: 'secret', resave: true, saveUninitialized: true })); // session secret
+app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true })); // session secret
 
 // PASSPORT MIDDLEWARE
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session()); // for persistent login
 
 // CONNECT FLASH
 app.use(flash());
 
 // GLOBAL VARS
-app.use((err, req, res, next) => {
-    res.locals.success_msg = req.flash('success_msg');
-    res.locals.error_msg = req.flash('error_msg');
-    res.locals.error = req.flash('error');
-    console.log(err);
-    next();
-});
+// app.use((err, req, res, next) => {
+//     res.locals.success_msg = req.flash('success_msg');
+//     res.locals.error_msg = req.flash('error_msg');
+//     res.locals.error = req.flash('error');
+//     console.log(err);
+//     next();
+// });
 
 // ROUTES
 app.use('/users', require('./controllers/users.js'));
@@ -54,9 +57,8 @@ app.use('/users', require('./controllers/users.js'));
 
 
 // Import routes and give the sever access to them     NEEDED????
-var routes = require("./controllers/recipeController.js")
+var routes = require("./controllers/recipeController.js");
 app.use(routes);
-
 
 db.sequelize.sync().then(function () {
     app.listen(PORT, console.log(`Server started on port ${PORT}`));
