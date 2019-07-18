@@ -1,10 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
     var Member = sequelize.define('Member', {
-        // id: {
-        //     autoIncrement: true,
-        //     primaryKey: true,
-        //     type: DataTypes.INTEGER
-        // },
+        
         firstname: {
             type: DataTypes.STRING,
             notEmpty: true,

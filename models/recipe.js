@@ -35,9 +35,7 @@ module.exports = function (sequelize, DataTypes) { // ** Makes the Recipe Model 
             type: DataTypes.ENUM('active', 'inactive'),
             dafaultValue: 'active'
         }
-
     });
-
 
     return Recipe;
 }
