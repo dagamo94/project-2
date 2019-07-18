@@ -11,14 +11,9 @@ router.get("/", function(req, res) {
 });
 
 router.post("/api/recipes", function(req, res) {
-    db.Recipe.create([
-        "recipe_name", "ingredients"
-    ], [
-        req.body.recipe_name, req.body.ingredients
-    ], function(result) {
-        // ** Send back the ID of the new 
-        res.json({ id: result.insertID });
-    });
+    db.Recipe.create(req.body).then(function(data) {
+        res.json(data);
+    })
 });
 
 // ** To delete a recipe
