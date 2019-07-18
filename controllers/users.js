@@ -54,7 +54,7 @@ router.post('/register', (req, res) => {
                 // HASH PASSWORD
                 var hashedPassword = "";
                 bcrypt.genSalt(10, (err, salt) => bcrypt.hash(password, salt, (err, hash) => {
-                    if(err) throw err;
+                    if (err) throw err;
 
                     hashedPassword = hash;
                     // CREATE NEW USER/MEMBER IN MYSQL DATABASE
@@ -65,10 +65,10 @@ router.post('/register', (req, res) => {
                         email: email,
                         password: hashedPassword
                     }).then(function (member) {
-                        req.flash('success_msg', 'You are now  registered and can now log in');
+                        req.flash('success_msg', 'You are now  registered and can now log in'); // res?
                         console.log(member);
                         res.redirect('/users/login');
-                    }).catch(err => console.log(err));              
+                    }).catch(err => console.log(err));
                 }));
             }
         });
@@ -81,14 +81,20 @@ router.post('/register', (req, res) => {
 router.post('/login',(req, res, next) => {
     passport.authenticate('local', function(err, user, info) {
         if (err) { return next(err); }
-        if (!user) { return res.redirect('/login'); }
+        if (!user) { return res.json({user: null}); }
         req.logIn(user, function(err) {
           if (err) { return next(err); }
-          return res.redirect('/users/' + user.email);
+        //   return res.redirect('/register');
         });
-      })(req, res, next);   res.redirect('/');
+      })(req, res, next);   
+      res.redirect('/');
    console.log("redirected + user: ");
 });
+// router.post('/signup',
+//     passport.authenticate('local', {
+//         successRedirect: '/',
+//         failureRedirect: '/users/register'
+//     }));
 
 // LOGOUT HANDLE
 router.get('/logout', (req, res) => {

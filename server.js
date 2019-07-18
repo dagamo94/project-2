@@ -5,7 +5,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 
-// USE INDEX.HTML
+// USE INDEX.EJS
 const db = require('./models');
 
 const app = express();
@@ -27,11 +27,11 @@ var routes = require("./controllers/recipeController.js")
 app.use(routes);
 
 // FOR PASSPORT USING EXPRESS SESSION
-app.use(session({ secret: 'secret', resave: true, saveUninitialized: true })); // session secret
+app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true })); // session secret
 
 // PASSPORT MIDDLEWARE
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session()); // for persistent login
 
 // CONNECT FLASH
 app.use(flash());
@@ -48,7 +48,8 @@ app.use(flash());
 // ROUTES
 app.use('/users', require('./controllers/users.js'));
 
-// //Sets Handlebars 
+
+//Sets Handlebars 
 // var exphbs = require("express-handlebars");
 // app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 // app.set("view engine", "handlebars");
@@ -56,19 +57,12 @@ app.use('/users', require('./controllers/users.js'));
 // Statis directory   NEEDED????
 app.use(express.static("public"));
 
-// // Import routes and give the sever access to them     NEEDED????
-// var routes = require("./controllers/recipeController.js")
-// app.use(routes);
-
-// Routes
-// require("./routes/api-routes.js")(app);
-
-
-//require("./routes/html-routes.js")(app);
+// Import routes and give the sever access to them     NEEDED????
+var routes = require("./controllers/recipeController.js");
+app.use(routes);
 
 db.sequelize.sync().then(function () {
     app.listen(PORT, console.log(`Server started on port ${PORT}`));
 }).catch(function (err) {
     console.log(err, "Something went wrong updating the Database");
-
 });
