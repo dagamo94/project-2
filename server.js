@@ -48,12 +48,8 @@ app.use((err, req, res, next) => {
     next();
 });
 
-app.get('*', function (req, res) {
-    res.send('/', 404);
-});
-
-
-
+// ROUTES
+app.use('/users', require('./controllers/users.js'));
 
 
 
