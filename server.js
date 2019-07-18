@@ -22,6 +22,9 @@ app.set('view engine', 'ejs');
 // BODYPARSER
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+//Import routes and give the sever access to them     NEEDED????
+var routes = require("./controllers/recipeController.js")
+app.use(routes);
 
 // FOR PASSPORT USING EXPRESS SESSION
 app.use(session({ secret: 'secret', resave: true, saveUninitialized: true })); // session secret
@@ -34,13 +37,13 @@ app.use(passport.session());
 app.use(flash());
 
 // GLOBAL VARS
-app.use((err, req, res, next) => {
-    res.locals.success_msg = req.flash('success_msg');
-    res.locals.error_msg = req.flash('error_msg');
-    res.locals.error = req.flash('error');
-    console.log(err);
-    next();
-});
+// app.use((err, req, res, next) => {
+//     res.locals.success_msg = req.flash('success_msg');
+//     res.locals.error_msg = req.flash('error_msg');
+//     res.locals.error = req.flash('error');
+//     console.log(err);
+//     next();
+// });
 
 // ROUTES
 app.use('/users', require('./controllers/users.js'));
@@ -53,9 +56,9 @@ app.use('/users', require('./controllers/users.js'));
 // Statis directory   NEEDED????
 app.use(express.static("public"));
 
-// Import routes and give the sever access to them     NEEDED????
-var routes = require("./controllers/recipeController.js")
-app.use(routes);
+// // Import routes and give the sever access to them     NEEDED????
+// var routes = require("./controllers/recipeController.js")
+// app.use(routes);
 
 // Routes
 // require("./routes/api-routes.js")(app);
