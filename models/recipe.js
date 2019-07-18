@@ -1,11 +1,6 @@
 module.exports = function (sequelize, DataTypes) { // ** Makes the Recipe Model available for other files (will also create a table) 
     // *TODO Creates a "Recipe" model that matches up with DB
     var Recipe = sequelize.define('Recipe', {
-        // id: {
-        //     autoIncrement: true,
-        //     primaryKey: true,
-        //     type: DataTypes.INTEGER
-        // },
         recipe_name: {
             type: DataTypes.STRING,
             notEmpty: true,
