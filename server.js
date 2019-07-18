@@ -62,8 +62,4 @@ db.sequelize.sync().then(function () {
     app.listen(PORT, console.log(`Server started on port ${PORT}`));
 }).catch(function (err) {
     console.log(err, "Something went wrong updating the Database");
-
 });
-
-
-
