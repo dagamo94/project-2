@@ -10,6 +10,10 @@ router.get("/", function(req, res) {
         res.render("index");
 });
 
+router.get('/recipes/indRecipe', function(req, res){
+    res.render("indRecipe");
+});
+
 router.post("/api/recipes", function(req, res) {
     db.Recipe.create([
         "recipe_name", "ingredients"
