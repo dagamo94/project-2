@@ -6,8 +6,6 @@ module.exports = function (sequelize, DataTypes) { // ** Makes the Recipe Model 
         //     primaryKey: true,
         //     type: DataTypes.INTEGER
         // },
-       
-      
         recipe_name: {
             type: DataTypes.STRING,
             notEmpty: true,
@@ -36,7 +34,7 @@ module.exports = function (sequelize, DataTypes) { // ** Makes the Recipe Model 
             }
         },
         image: {
-            type: DataTypes.DATE
+            type: DataTypes.STRING
         },
         status: {
             type: DataTypes.ENUM('active', 'inactive'),
