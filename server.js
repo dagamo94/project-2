@@ -5,7 +5,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 
-// USE INDEX.HTML
+// USE INDEX.EJS
 const db = require('./models');
 
 const app = express();
@@ -24,23 +24,23 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // FOR PASSPORT USING EXPRESS SESSION
-app.use(session({ secret: 'secret', resave: true, saveUninitialized: true })); // session secret
+app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true })); // session secret
 
 // PASSPORT MIDDLEWARE
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session()); // for persistent login
 
 // CONNECT FLASH
 app.use(flash());
 
 // GLOBAL VARS
-app.use((err, req, res, next) => {
-    res.locals.success_msg = req.flash('success_msg');
-    res.locals.error_msg = req.flash('error_msg');
-    res.locals.error = req.flash('error');
-    console.log(err);
-    next();
-});
+// app.use((err, req, res, next) => {
+//     res.locals.success_msg = req.flash('success_msg');
+//     res.locals.error_msg = req.flash('error_msg');
+//     res.locals.error = req.flash('error');
+//     console.log(err);
+//     next();
+// });
 
 // ROUTES
 app.use('/', require('./routes/router.js'));
