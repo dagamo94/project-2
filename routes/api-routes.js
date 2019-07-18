@@ -13,22 +13,22 @@ module.exports = function(app) {
     });
 
     // GET - route for returning recipes of a specific category
-    app.get("/api/recipes/category/:category", function(req, res) {
-        db.Recipe.findAll({
-            where: {
-                category: req.params.category
-            }
-        })
-        .then(function(dbRecipe) {
-            res.json(dbRecipe);
-          });
-    });
+    // app.get("/api/recipes/category/:category", function(req, res) {
+    //     db.Recipe.findAll({
+    //         where: {
+    //             category: req.params.category
+    //         }
+    //     })
+    //     .then(function(dbRecipe) {
+    //         res.json(dbRecipe);
+    //       });
+    // });
 
     // GET - route for retrieving a single recipe
-    app.get("/api/recipes/:id", function(req, res) {
+    app.get("/api/recipes/:recipe", function(req, res) {
         db.Recipe.findOne({
             where: {
-                id: req.params.id
+                id: req.params.recipe
             }
         })
         .then(function(dbRecipe) {
