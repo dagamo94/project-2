@@ -15,14 +15,6 @@ const app = express();
 
 const PORT = process.env.PORT || 8080;
 
-
-// STATIC DIRECTORY
-//app.use(express.static("/public"));
-//app.use(express.static(__dirname + '/public'));
-var path = require("path");
-app.use(express.static(path.join(__dirname + '/public')));
-
-
 // EJS
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
@@ -69,12 +61,16 @@ app.get('*', function (req, res) {
 // app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 // app.set("view engine", "handlebars");
 
+// Statis directory
+app.use(express.static("public"));
+
+require("./routes/api-routes.js")(app);
 // Import routes and give the sever access to them     NEEDED????
 var routes = require("./controllers/recipeController.js")
 app.use(routes);
 
 // Routes
-require("./routes/api-routes.js")(app);
+// require("./routes/api-routes.js")(app);
 
 
 //require("./routes/html-routes.js")(app);
