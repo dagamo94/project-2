@@ -78,7 +78,7 @@ router.post('/register', (req, res) => {
 });
 
 // LOGIN HANDLE
-router.post('/signup',(req, res, next) => {
+router.post('/login',(req, res, next) => {
     passport.authenticate('local', function(err, user, info) {
         if (err) { return next(err); }
         if (!user) { return res.json({user: null}); }

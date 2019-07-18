@@ -6,14 +6,14 @@ module.exports = function(sequelize, DataTypes) {// ** Makes the Recipe Model av
     //     primaryKey: true,
     //     type: DataTypes.INTEGER
     // },
-    id: {
-      type: DataTypes.STRING,
-      notEmpty: true,
-      allowNull: false,
-      validate: {
-          notIn: [" "]
-      }
-  },
+//     id: {
+//       type: DataTypes.STRING,
+//       notEmpty: true,
+//       allowNull: false,
+//       validate: {
+//           notIn: [" "]
+//       }
+//   },
     recipe_name: {
         type: DataTypes.STRING,
         notEmpty: true,
