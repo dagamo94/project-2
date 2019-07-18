@@ -30,7 +30,7 @@ module.exports = function (sequelize, DataTypes) { // ** Makes the Recipe Model 
         },
         image: {
             type: DataTypes.STRING
-        },
+        }
         // status: {
         //     type: DataTypes.ENUM('active', 'inactive'),
         //     dafaultValue: 'active'

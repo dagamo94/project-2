@@ -7,7 +7,10 @@ const db = require('../models')
 
 module.exports = function (passport) {
     passport.use(
-        new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
+        new LocalStrategy({ 
+            usernameField: "email",
+            password: "password"
+        }, (email, password, done) => {
             db.Member.findOne({
                 where: {
                     email: email
