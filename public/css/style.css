@@ -10,4 +10,27 @@ body {
 
 #indBody{
     background-color: #343a40 !important;
+    /* float: left; */
+}
+
+#recipe_image {
+    width: 240px;
+    height: 350px;
+    object-fit: contain;
+    margin-left: -3em;
+}
+
+
+@media screen and (max-width: 768px){
+    #recipe_image {
+        width: 150px;
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 481px){
+    #recipe_image {
+        width: 120px;
+        height: 200px;
+    }
 }
